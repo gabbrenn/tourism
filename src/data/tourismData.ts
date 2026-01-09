@@ -4,7 +4,7 @@ import nyungweImg from "@/assets/nyungwe-forest.jpg";
 import lakeKivuImg from "@/assets/lake-kivu.jpg";
 import culturalImg from "@/assets/cultural-dance.jpg";
 
-import rdblogo from "@/assets/logos/RDB_logo.png";
+import rdblogo from "@/assets/logos/rdb_logo.png";
 import visitrwandaLogo from "@/assets/logos/Visit_Rwanda_Logo.png";
 import africanParksLogo from "@/assets/logos/African_Parks_Logo.png";
 import ecoTourismLogo from "@/assets/logos/tourism-alliance-logo.png";
