@@ -6,7 +6,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import { blogPosts } from "@/data/tourismData";
 import { Badge } from "@/components/ui/badge";
-import heroImage from "@/assets/hero-rwanda.jpg";
+import heroImage from "@/assets/lake-kivu.jpg";
 
 const Blog = () => {
   return (

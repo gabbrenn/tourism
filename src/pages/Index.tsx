@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Heart, Leaf, Award, Users, Clock } from "lucide-react";
+import { ArrowRight, Shield, Heart, Leaf, Award, Users, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/shared/SectionHeader";
 import DestinationCard from "@/components/shared/DestinationCard";
@@ -10,6 +11,56 @@ import CTASection from "@/components/shared/CTASection";
 import { Button } from "@/components/ui/button";
 import { destinations, tours, partners } from "@/data/tourismData";
 import heroImage from "@/assets/hero-rwanda.jpg";
+import gorillaImg from "@/assets/gorilla-trekking.jpg";
+import akageraImg from "@/assets/akagera-safari.jpg";
+import nyungweImg from "@/assets/nyungwe-forest.jpg";
+import lakeKivuImg from "@/assets/lake-kivu.jpg";
+import kigaliNightImg from "@/assets/kigali-night.jpg";
+
+const heroSlides = [
+  {
+    image: heroImage,
+    subtitle: "Welcome to Rwanda",
+    title: "Discover Rwanda",
+    highlight: "The Land of a Thousand Hills",
+    description: "Experience the magic of mountain gorillas, breathtaking landscapes, and vibrant culture. Your unforgettable African adventure starts here.",
+  },
+  {
+    image: gorillaImg,
+    subtitle: "Wildlife Adventure",
+    title: "Meet the Gorillas",
+    highlight: "Once in a Lifetime Experience",
+    description: "Trek through misty forests to encounter endangered mountain gorillas in their natural habitat. An experience that will stay with you forever.",
+  },
+  {
+    image: akageraImg,
+    subtitle: "Safari Excellence",
+    title: "Akagera Safari",
+    highlight: "The Big Five Awaits",
+    description: "Witness lions, elephants, rhinos, and more in Rwanda's stunning savanna. Experience Africa's finest wildlife in style.",
+  },
+  {
+    image: nyungweImg,
+    subtitle: "Nature's Paradise",
+    title: "Nyungwe Forest",
+    highlight: "Ancient Rainforest Magic",
+    description: "Walk among chimpanzees and canopy walkways in one of Africa's oldest rainforests. Pure adventure awaits.",
+  },
+  {
+    image: lakeKivuImg,
+    subtitle: "Relaxation & Beauty",
+    title: "Lake Kivu Escape",
+    highlight: "Serenity on the Water",
+    description: "Unwind on the shores of one of Africa's Great Lakes. Kayak, swim, and explore charming lakeside towns.",
+  },
+  {
+    image: kigaliNightImg,
+    subtitle: "Memorable Evenings",
+    title: "Kigali Nightlife",
+    highlight: "Experience the City After Dark",
+    description: "Explore Kigali's vibrant nightlife, from lively bars to cultural performances and delicious local cuisine.",
+  },
+];
 
 const features = [
   {
@@ -45,57 +96,157 @@ const features = [
 ];
 
 const Index = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-advance hero slides
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    setIsAutoPlaying(false);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+    setIsAutoPlaying(false);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+  };
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt="Rwanda Landscape"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/60 to-transparent" />
-        </div>
+      {/* Hero Slider Section */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background Images with Crossfade */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <img
+              src={heroSlides[currentSlide].image}
+              alt={heroSlides[currentSlide].title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/70 to-secondary/30" />
+          </motion.div>
+        </AnimatePresence>
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 pt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-2xl"
-          >
-            <span className="inline-block text-accent text-sm font-semibold uppercase tracking-wider mb-4">
-              Welcome to Rwanda
-            </span>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-card mb-6 leading-tight">
-              Discover Rwanda
-              <br />
-              <span className="text-accent">The Land of a Thousand Hills</span>
-            </h1>
-            <p className="text-card/90 text-lg md:text-xl mb-8 leading-relaxed">
-              Experience the magic of mountain gorillas, breathtaking landscapes,
-              and vibrant culture. Your unforgettable African adventure starts here.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="text-lg px-8">
-                <Link to="/tours" className="flex items-center gap-2">
-                  Explore Tours
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 border-card text-card hover:bg-card hover:text-foreground"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="max-w-2xl"
+            >
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-block text-accent text-sm font-semibold uppercase tracking-wider mb-4"
               >
-                <Link to="/contact">Contact Us</Link>
-              </Button>
-            </div>
-          </motion.div>
+                {heroSlides[currentSlide].subtitle}
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-card mb-6 leading-tight"
+              >
+                {heroSlides[currentSlide].title}
+                <br />
+                <span className="text-accent">{heroSlides[currentSlide].highlight}</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-card/90 text-lg md:text-xl mb-8 leading-relaxed"
+              >
+                {heroSlides[currentSlide].description}
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Button asChild size="lg" className="text-lg px-8">
+                  <Link to="/tours" className="flex items-center gap-2">
+                    Explore Tours
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-8 border-card hover:bg-card hover:text-foreground"
+                >
+                  <Link to="/booking">Book Now</Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Slide Navigation Arrows */}
+        <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 flex justify-between z-20 pointer-events-none">
+          <button
+            onClick={prevSlide}
+            className="w-12 h-12 rounded-full bg-card/20 backdrop-blur-sm border border-card/30 flex items-center justify-center text-card hover:bg-card/40 transition-all pointer-events-auto group"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="w-12 h-12 rounded-full bg-card/20 backdrop-blur-sm border border-card/30 flex items-center justify-center text-card hover:bg-card/40 transition-all pointer-events-auto group"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
+          </button>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`relative h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "w-10 bg-accent"
+                  : "w-2 bg-card/50 hover:bg-card/80"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              {index === currentSlide && (
+                <motion.div
+                  className="absolute inset-0 bg-accent rounded-full"
+                  layoutId="activeSlide"
+                />
+              )}
+            </button>
+          ))}
         </div>
 
         {/* Scroll Indicator */}
@@ -103,7 +254,7 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
         >
           <div className="w-6 h-10 border-2 border-card/50 rounded-full flex justify-center pt-2">
             <motion.div
@@ -212,27 +363,32 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Partners */}
-      <section className="py-16 bg-accent/30">
+      {/* Partners Infinite Scroll */}
+      <section className="py-16 bg-accent/30 overflow-hidden">
         <div className="container mx-auto px-4">
-          <p className="text-center text-muted-foreground mb-8 font-medium">
+          <p className="text-center text-muted-foreground mb-12 font-medium">
             Trusted by Leading Tourism Organizations
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {partners.map((partner, index) => (
-              <motion.div
-                key={partner.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-20 h-20 bg-card rounded-full flex items-center justify-center shadow-sm"
-              >
-                <span className="font-bold text-primary text-lg">
-                  {partner.logo}
-                </span>
-              </motion.div>
-            ))}
+          <div className="w-full overflow-hidden relative">
+            <div className="flex gap-12 partner-scroll">
+              {[...partners, ...partners, ...partners].map((partner, index) => (
+                <div
+                  key={`${partner.id}-${index}`}
+                  className="flex-shrink-0 flex flex-col items-center gap-3"
+                >
+                  <div className="w-48 h-48 bg-card rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-shadow border border-primary/10 overflow-hidden">
+                    <img
+                      src={partner.image}
+                      alt={partner.name}
+                      className="w-full h-full object-contain hover:scale-110 transition-transform duration-300 p-4"
+                    />
+                  </div>
+                  <p className="text-sm font-medium text-foreground text-center max-w-[200px]">
+                    {partner.name}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Services", path: "/services" },
   { name: "Tours", path: "/tours" },
   { name: "Destinations", path: "/destinations" },
+  { name: "Booking", path: "/booking" },
   { name: "Blog", path: "/blog" },
   { name: "Contact", path: "/contact" },
 ];
@@ -89,7 +90,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Button asChild>
-              <Link to="/contact">Book Now</Link>
+              <Link to="/booking">Book Now</Link>
             </Button>
           </div>
 
@@ -133,7 +134,7 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <Button asChild className="w-full mt-4">
-                  <Link to="/contact">Book Now</Link>
+                  <Link to="/booking">Book Now</Link>
                 </Button>
               </div>
             </motion.div>

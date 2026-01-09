@@ -6,7 +6,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import { Button } from "@/components/ui/button";
 import { destinations } from "@/data/tourismData";
-import heroImage from "@/assets/hero-rwanda.jpg";
+import heroImage from "@/assets/nyungwe-forest.jpg";
 
 const Destinations = () => {
   return (

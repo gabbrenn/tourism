@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
 import CTASection from "@/components/shared/CTASection";
-import heroImage from "@/assets/hero-rwanda.jpg";
+import heroImage from "@/assets/cultural-dance.jpg";
 import culturalImg from "@/assets/cultural-dance.jpg";
 
 const values = [

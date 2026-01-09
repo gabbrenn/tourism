@@ -65,12 +65,19 @@ const TourCard = ({ tour, index }: TourCardProps) => {
         </div>
         
         {/* CTA */}
-        <Button asChild variant="outline" className="w-full group/btn">
-          <Link to={`/tours/${tour.id}`} className="flex items-center justify-center gap-2">
-            View Details
-            <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild variant="outline" className="flex-1 group/btn">
+            <Link to={`/tours/${tour.id}`} className="flex items-center justify-center gap-2">
+              View Details
+              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+            </Link>
+          </Button>
+          <Button asChild className="flex-1">
+            <Link to={`/booking/tour?tour=${tour.id}`}>
+              Book Now
+            </Link>
+          </Button>
+        </div>
       </div>
     </motion.div>
   );

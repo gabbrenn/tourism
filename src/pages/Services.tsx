@@ -14,13 +14,22 @@ import Layout from "@/components/layout/Layout";
 import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-rwanda.jpg";
+import heroImage from "@/assets/gorilla-trekking.jpg";
+import gorillaImg from "@/assets/gorilla-trekking.jpg";
+import akageraImg from "@/assets/akagera-safari.jpg";
+import nyungweImg from "@/assets/nyungwe-forest.jpg";
+import lakeKivuImg from "@/assets/lake-kivu.jpg";
+import culturalImg from "@/assets/cultural-dance.jpg";
+import airportpickupImg from "@/assets/airport_pickup.jpg";
+import hotelImg from "@/assets/hotel-des-milles-collines.png";
+import peopleinvolcanoImg from "@/assets/people_in_volcanos.png";
 
 const services = [
   {
     icon: Compass,
     title: "Tour & Safari Packages",
     description: "Expertly crafted tours covering Rwanda's most spectacular destinations. From wildlife safaris to cultural immersions, we design comprehensive packages that showcase the best of Rwanda.",
+    image: akageraImg,
     features: [
       "Multi-day adventure tours",
       "Luxury and budget options",
@@ -32,6 +41,7 @@ const services = [
     icon: PawPrint,
     title: "Gorilla Trekking",
     description: "Experience the magic of encountering mountain gorillas in their natural habitat. We handle permit bookings, guide arrangements, and logistics for an unforgettable wildlife encounter.",
+    image: gorillaImg,
     features: [
       "Gorilla permit assistance",
       "Expert trekking guides",
@@ -43,6 +53,7 @@ const services = [
     icon: Users,
     title: "Cultural & Community Tours",
     description: "Connect with Rwanda's rich cultural heritage through authentic community experiences. Visit traditional villages, witness ceremonial dances, and learn about local crafts.",
+    image: culturalImg,
     features: [
       "Village homestays",
       "Traditional dance performances",
@@ -54,6 +65,7 @@ const services = [
     icon: Hotel,
     title: "Hotel & Lodge Booking",
     description: "From luxury lodges perched on volcanic slopes to boutique hotels in Kigali, we curate accommodations that complement your journey perfectly.",
+    image: hotelImg,
     features: [
       "Luxury safari lodges",
       "Eco-friendly camps",
@@ -65,6 +77,7 @@ const services = [
     icon: Car,
     title: "Airport Transfers",
     description: "Seamless transportation from the moment you land. Our reliable drivers and comfortable vehicles ensure stress-free travel throughout your Rwanda adventure.",
+    image: airportpickupImg,
     features: [
       "Kigali airport pickups",
       "Comfortable 4x4 vehicles",
@@ -76,6 +89,7 @@ const services = [
     icon: FileText,
     title: "Visa & Travel Consultancy",
     description: "Navigate visa requirements and travel documentation with ease. Our consultancy services ensure your paperwork is in order before you arrive.",
+    image: nyungweImg,
     features: [
       "Visa application assistance",
       "Travel insurance guidance",
@@ -87,6 +101,7 @@ const services = [
     icon: Briefcase,
     title: "Corporate & Group Travel",
     description: "Tailored solutions for business retreats, conferences, and large group expeditions. We handle the logistics so you can focus on your objectives.",
+    image: peopleinvolcanoImg,
     features: [
       "Conference arrangements",
       "Team building activities",
@@ -122,7 +137,7 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -134,8 +149,8 @@ const Services = () => {
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
-                <div className="flex-1 bg-card p-8 md:p-12 rounded-xl shadow-sm">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                <div className="flex-1 bg-card p-8 md:p-12 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                     <service.icon className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-serif text-2xl font-bold text-foreground mb-4">
@@ -152,16 +167,29 @@ const Services = () => {
                       </li>
                     ))}
                   </ul>
-                  <Button asChild variant="outline">
-                    <Link to="/contact" className="flex items-center gap-2">
-                      Inquire Now
+                  <Button asChild>
+                    <Link to="/booking" className="flex items-center gap-2">
+                      Get Started
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </Button>
                 </div>
-                <div className="flex-1 hidden lg:block">
-                  <div className="aspect-square bg-accent/50 rounded-xl flex items-center justify-center">
-                    <service.icon className="w-32 h-32 text-primary/30" />
+                <div className="flex-1 w-full">
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-xl group">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                          <service.icon className="w-6 h-6 text-white" />
+                        </div>
+                        <span className="text-white font-semibold text-lg">{service.title}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>

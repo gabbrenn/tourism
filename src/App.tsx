@@ -10,6 +10,10 @@ import Tours from "./pages/Tours";
 import Destinations from "./pages/Destinations";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Booking from "./pages/Booking";
+import BookingTour from "./pages/BookingTour";
+import BookingFlight from "./pages/BookingFlight";
+import BookingConfirmation from "./pages/BookingConfirmation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/booking/tour" element={<BookingTour />} />
+          <Route path="/booking/flight" element={<BookingFlight />} />
+          <Route path="/booking/confirmation" element={<BookingConfirmation />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

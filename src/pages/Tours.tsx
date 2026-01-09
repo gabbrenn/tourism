@@ -5,7 +5,7 @@ import PageHero from "@/components/shared/PageHero";
 import TourCard from "@/components/shared/TourCard";
 import CTASection from "@/components/shared/CTASection";
 import { tours } from "@/data/tourismData";
-import heroImage from "@/assets/hero-rwanda.jpg";
+import heroImage from "@/assets/akagera-safari.jpg";
 
 const categories = ["All", "Gorilla Trekking", "Safari", "Adventure", "Cultural", "Relaxation", "Comprehensive"];
 

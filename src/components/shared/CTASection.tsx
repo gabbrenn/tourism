@@ -44,7 +44,7 @@ const CTASection = ({
               variant="secondary"
               className="text-lg px-8"
             >
-              <Link to="/contact" className="flex items-center gap-2">
+              <Link to="/booking" className="flex items-center gap-2">
                 {primaryCTA}
                 <ArrowRight className="w-5 h-5" />
               </Link>
@@ -53,9 +53,9 @@ const CTASection = ({
               asChild
               size="lg"
               variant="outline"
-              className="text-lg px-8 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="text-lg px-8 border-primary-foreground hover:bg-primary-foreground hover:text-primary"
             >
-              <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2">
+              <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2 text-green-800">
                 <Phone className="w-5 h-5" />
                 {secondaryCTA}
               </a>

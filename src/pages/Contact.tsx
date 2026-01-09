@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { companyInfo } from "@/data/tourismData";
-import heroImage from "@/assets/hero-rwanda.jpg";
+import heroImage from "@/assets/nyungwe-forest.jpg";
 
 const Contact = () => {
   return (

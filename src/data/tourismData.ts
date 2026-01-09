@@ -4,6 +4,12 @@ import nyungweImg from "@/assets/nyungwe-forest.jpg";
 import lakeKivuImg from "@/assets/lake-kivu.jpg";
 import culturalImg from "@/assets/cultural-dance.jpg";
 
+import rdblogo from "@/assets/logos/RDB_logo.png";
+import visitrwandaLogo from "@/assets/logos/Visit_Rwanda_Logo.png";
+import africanParksLogo from "@/assets/logos/African_Parks_Logo.png";
+import ecoTourismLogo from "@/assets/logos/tourism-alliance-logo.png";
+import safariPartnersLogo from "@/assets/logos/Safari_Partners_Logo.png";
+
 export interface Destination {
   id: string;
   name: string;
@@ -263,11 +269,11 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const partners = [
-  { name: "Visit Rwanda", logo: "VR" },
-  { name: "Rwanda Development Board", logo: "RDB" },
-  { name: "African Parks", logo: "AP" },
-  { name: "Eco-Tourism Alliance", logo: "ETA" },
-  { name: "Safari Partners", logo: "SP" }
+  { id: "visit-rwanda", name: "Visit Rwanda", image: visitrwandaLogo },
+  { id: "rdb", name: "Rwanda Development Board", image: rdblogo },
+  { id: "african-parks", name: "African Parks", image: africanParksLogo },
+  { id: "eco-tourism", name: "Eco-Tourism Alliance", image: ecoTourismLogo },
+  { id: "safari-partners", name: "Safari Partners", image: safariPartnersLogo }
 ];
 
 export const companyInfo = {

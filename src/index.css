@@ -5,6 +5,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Partner Scroll Animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+.partner-scroll {
+  animation: scroll-left 40s linear infinite;
+}
+
+.partner-scroll:hover {
+  animation-play-state: paused;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
